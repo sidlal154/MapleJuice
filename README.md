@@ -1,10 +1,10 @@
-# CS425 - mp4 - Group 58
+# MapleJuice
 
-The mp4 (MapleJuice) focuses on making a distributed task scheduler over a distributed file system (MP3) using a gossip based membership protocol(MP2). MapleJuice has a leader-worker architecture, and closely resembles MapReduce, and can handle failure of worker nodes. It also has an SQL parser to run SQL-like queries.
+The MapleJuice focuses on making a distributed task scheduler over a distributed file system using a gossip based membership protocol. MapleJuice has a leader-worker architecture, and closely resembles MapReduce, and can handle failure of worker nodes. It also has an SQL parser to run SQL-like queries.
 
 ## Overview
 
-MapleJuice has been built using Golang. It is built on top of our MP-2, Gossip based memberhsip protocol, which supports dynamic joins and leaves from the network, along with fault tolerance, and MP-3, an SDFS. Additionally, we use gRPC (port 50051) to handle all the networking requests apart from those used by gossip.
+MapleJuice has been built using Golang. It is built on top of a Gossip based membership protocol, which supports dynamic joins and leaves from the network, along with fault tolerance, and an SDFS. Additionally, we use gRPC (port 50051) to handle all the networking requests apart from those used by gossip.
 
 ## Usage
 
@@ -68,8 +68,8 @@ In addition to this, you can also run vanilla SQL commands in the following form
 
 Note: Here we have assumed that introducer is launched first before all nodes are launched, and the introducer is the MapleJuice Leader.
 
-## Report
+## Acknowwledgement
 
-Please refer to mp4-report.pdf for further insights into design and performance.
+This Repo is completely designed, developed and maintained by Siddharth Lal and Risheek Rakshit SK as a part of a Programming Assignment for the course 'Distributed Systems' by Prof. Indranil Gupta
 
 
