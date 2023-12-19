@@ -1,0 +1,146 @@
+syntax = "proto3";
+
+package protos;
+
+option go_package = "./grpcServer";
+//export PATH="$PATH:$(go env GOPATH)/bin"
+
+service GrpcServer {
+    rpc SendWrite (stream SendWriteRequest) returns (SendWriteResponse);
+    rpc SendRead (SendReadRequest) returns (SendReadResponse);
+    rpc GetReadFile (GetReadFileRequest) returns (stream GetByteArrayResponse);
+    rpc RemoteRead (RemoteReadRequest) returns (RemoteReadResponse);
+    rpc DeleteFile (DeleteFileRequest) returns (DeleteFileResponse);
+    rpc Enqueue (EnqueueRequest) returns (EnqueueResponse);
+    rpc Dequeue (DequeueRequest) returns (DequeueResponse);
+    rpc TopPeek (TopPeekRequest) returns (TopPeekResponse);
+    rpc NotifyMaple (NotifyMapleRequest) returns (NotifyMapleResponse);
+    rpc AllotMaple (AllotMapleRequest) returns (stream AllotMapleResponse);
+    rpc NotifyJuice (NotifyJuiceRequest) returns (NotifyJuiceResponse);
+    rpc AllotJuice (AllotJuiceRequest) returns (stream AllotJuiceResponse);
+    rpc SendFile (stream SendWriteRequest) returns (SendWriteResponse);
+    rpc NotifySQL (NotifySQLRequest) returns (NotifySQLResponse);
+}
+
+message SendReadRequest {
+    string filename = 1;
+}
+
+message SendReadResponse {
+    string destinationId = 1;
+}
+
+message GetReadFileRequest {
+    string filename = 1;
+}
+
+message GetByteArrayResponse {
+    bytes data = 1;
+}
+
+message SendWriteRequest {
+    string filename = 1;
+    bytes data = 2;
+}
+
+message SendWriteResponse {
+    string status = 1;
+}
+
+message RemoteReadRequest {
+    string filename = 1;
+    string sdfsname = 2;
+}
+
+message RemoteReadResponse {
+    string status = 1;
+}
+
+message DeleteFileRequest {
+    string filename = 1;
+}
+
+message DeleteFileResponse {
+    string status = 1;
+}
+
+message EnqueueRequest {
+    string filename = 1;
+    string operation = 2;
+    string nodeid = 3;
+}
+
+message EnqueueResponse {
+    string status = 1;
+}
+
+message DequeueRequest {
+    string filename = 1;
+    string nodeid = 2;
+}
+
+message DequeueResponse {
+    string status = 1;
+}
+
+message TopPeekRequest {
+    string filename = 1;
+}
+
+message TopPeekResponse {
+    string top = 1;
+    string top2 = 2;
+}
+
+message NotifyMapleRequest {
+    string executable = 1;
+    int64 num_maples = 2;
+    string inter_file_prefix = 3;
+    string sdfs_src_dir = 4;
+}
+
+message NotifyMapleResponse {
+    string status = 1;
+}
+
+message NotifyJuiceRequest {
+    string executable = 1;
+    int64 num_juices = 2;
+    string inter_file_prefix = 3;
+    string sdfs_dest_filename = 4;
+    bool delete_file = 5;
+}
+
+message NotifyJuiceResponse {
+    string status = 1;
+}
+
+message AllotMapleRequest {
+    string executable = 1;
+    string sdfs_src_dir = 2;
+    string inter_file_prefix = 3;
+    repeated string from_to = 4;
+}
+
+message AllotMapleResponse {
+    string status = 1;
+}
+
+
+message AllotJuiceRequest {
+    string executable = 1;
+    repeated string sdfs_src_dir = 2;
+}
+
+message AllotJuiceResponse {
+    string status = 1;
+}
+
+message NotifySQLRequest {
+    repeated NotifyMapleRequest maple_requests = 1;
+    repeated NotifyJuiceRequest juice_requests = 2;
+}
+
+message NotifySQLResponse {
+    string status = 1;
+}

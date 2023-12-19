@@ -1,0 +1,14 @@
+port: 4040
+machineName: fa23-cs425-5801.cs.illinois.edu
+introducerId: fa23-cs425-5801.cs.illinois.edu
+tgossip: 1000
+tfail: 3000
+tcleanup: 3000
+b: 3
+dropRate: 0
+replica: 4
+networkSize: 10
+maxReaders: 4
+maxWriters: 2
+sdfsdir: sdfs
+localdir: files
